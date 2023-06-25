@@ -52,4 +52,48 @@ public class PosterTest {
         Film[] actual = poster.findAll();
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void shouldGetLessMaxLimit () {
+        Poster poster = new Poster(6);
+        poster.addFilm(film1);
+        poster.addFilm(film2);
+        poster.addFilm(film3);
+        poster.addFilm(film4);
+        poster.addFilm(film5);
+
+        Film[] expected = new Film[]{film5, film4, film3, film2, film1};
+        Film[] actual = poster.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGetAboveMaxLimit () {
+        Poster poster = new Poster(5);
+        poster.addFilm(film1);
+        poster.addFilm(film2);
+        poster.addFilm(film3);
+        poster.addFilm(film4);
+        poster.addFilm(film5);
+        poster.addFilm(film6);
+
+        Film[] expected = new Film[]{film6, film5, film4, film3, film2};
+        Film[] actual = poster.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGetEqualMaxLimit () {
+        Poster poster = new Poster(6);
+        poster.addFilm(film1);
+        poster.addFilm(film2);
+        poster.addFilm(film3);
+        poster.addFilm(film4);
+        poster.addFilm(film5);
+        poster.addFilm(film6);
+
+        Film[] expected = new Film[]{film6, film5, film4, film3, film2, film1};
+        Film[] actual = poster.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
